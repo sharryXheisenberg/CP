@@ -2,42 +2,32 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// A word is considered valid if:
-
-// It contains a minimum of 3 characters.
-// It contains only digits (0-9), and English letters (uppercase and lowercase).
-// It includes at least one vowel.
-// It includes at least one consonant.
-// You are given a string word.
-
-// Return true if word is valid, otherwise, return false.
-
-// Notes:
-
-// 'a', 'e', 'i', 'o', 'u', and their uppercases are vowels.
-// A consonant is an English letter that is not a vowel.
-
-
 class Solution{
-    public:
+public:
     bool isValid(string word) {
-        bool op = true;
-        if(word.size()<3){
-            op = false;
+        string vowels = "aeiou";
+        int v_cnt = 0;
+        int con_cnt = 0;
+
+        if (word.size() < 3) {
+            return false;
         }
+
+        for (char c : word) {
+            if (!isalnum(c)) {
+                return false; // has invalid char
+            }
+            if (isalpha(c)) {
+                char lower_c = tolower(c);
+                if (vowels.find(lower_c) != string::npos) {
+                    v_cnt++;
+                } else {
+                    con_cnt++;
+                }
+            }
+        }
+
+        return v_cnt >= 1 && con_cnt >= 1;
     }
 };
 
-int main() {
-    Solution obj;
-    string s;
-    bool ok = obj.isValid(s);
-    
-    if(ok){
-        cout<<"true"<<endl;
-    }
-    else 
-     cout<<"false"<<endl;
-
-     return 0;
-}
