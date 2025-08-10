@@ -1,0 +1,1 @@
+{"name":"Local: problem_3","url":"c:\\Users\\hp\\Desktop\\U_CP\\CP\\atcoder\\problem_3.cpp","tests":[{"id":1754746349197,"input":"4 5\n4 1 8 4\n1\n8\n5\n2\n10\n","output":"1\n17\n14\n5\n-1\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\hp\\Desktop\\U_CP\\CP\\atcoder\\problem_3.cpp","group":"local","local":true}
