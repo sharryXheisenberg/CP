@@ -17,3 +17,5 @@ int main() {
     pair<int,int>k = min_max(arr);
     cout<<k.first<<" "<<k.second;
 }
+
+ 
