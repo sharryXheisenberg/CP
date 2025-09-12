@@ -1,28 +1,36 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-
 
 class Solution {
 public:
     vector<int> getNoZeroIntegers(int n) {
-        for(int i=1;i<n;i++){
-            for(int j=i+1;j<n;j++){
-                if((i==n-j) && (i%2!=0 && j%2!=0)){
-                    return {i,j};
-                }
+        for (int a = 1; a < n; ++a) {
+            int b = n - a;
+            if (isNoZero(a) && isNoZero(b)) {
+                return {a, b};
             }
-        
         }
+        return {};
+    }
+
+private:
+    bool isNoZero(int x) {
+        while (x > 0) {
+            if (x % 10 == 0) return false;
+            x /= 10;
+        }
+        return true;
     }
 };
 
-int  main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);  
-    Solution obj;
-    vector<int>res = obj.getNoZeroIntegers(11);
-    pair<int,int>ok = {res[0],res[1]};
-    cout<<ok.first<<" "<<ok.second<<endl;
-    return 0;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
+    Solution sol;
+    vector<int> res = sol.getNoZeroIntegers(11); 
+    if (!res.empty()) {
+        cout << res[0] << " " << res[1] << "\n"; 
+    }
+    return 0;
 }
