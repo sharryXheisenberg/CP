@@ -4,14 +4,15 @@ using namespace std;
 class Solution {
 public:
     vector<int> successfulPairs(vector<int>& spells, vector<int>& potions, long long success) {
+        sort(potions.begin(), potions.end());
+        int m = potions.size();
         vector<int> res;
-        for (int i = 0; i < spells.size(); i++) {
-            int cnt = 0;
-            for (int j = 0; j < potions.size(); j++) {
-                long long product = spells[i] * potions[j];
-                if (product >= success) cnt++;
-            }
-            res.push_back(cnt);
+
+        for (int spell : spells) {
+            long long minPotion = (success + spell - 1) / spell;
+            auto it = lower_bound(potions.begin(), potions.end(), minPotion);
+            int count = potions.end() - it;
+            res.push_back(count);
         }
         return res;
     }
