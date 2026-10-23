@@ -1,0 +1,50 @@
+/* 
+ *  (▀̿Ĺ̯▀̿ ̿) Author - Balerion_The_second  (▀̿Ĺ̯▀̿ ̿)
+ */
+
+#include<bits/stdc++.h>
+#define ll long long int
+#define pb push_back
+#define vec vector<ll>
+ll MOD = (7 + (1e9));
+#define en endl
+using namespace std;
+
+class Solution {
+private:
+    pair<int,int>expandAroundCenter(const string &s , int left , int right){
+        while(left>=0 && right < s.size() && s[left] == s[right]){
+            left--;
+            right++;
+        }
+        return {left + 1 , right - 1};
+    }
+public:
+    string longestPalindrome(string s) {
+        int n = s.size();
+        if(n==0) return "";
+        int start = 0 , end = 0;
+        for(int i = 0;i<n;i++){
+            auto odd = expandAroundCenter(s,i,i);
+            auto even  = expandAroundCenter(s,i,i+1);
+            if(odd.second - odd.first> end - start){
+                start = odd.first;
+                end = odd.second;
+            }
+            if(even.second - even.first > end - start){
+                start = even.first;
+                end = even.second;
+            }
+        }
+        return s.substr(start , end - start + 1);
+    }
+};
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    Solution obj;
+    string s = "babad";
+    cout<<obj.longestPalindrome(s)<<en;
+    return 0;
+}
